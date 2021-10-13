@@ -1,45 +1,62 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LmjHotelWebApplication</title>
+    <title>@ViewData["Title"] - Lmj Hotel </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
+<!-- Todo HTML, CSS e Bootstrap aqui configurados servem de layouts para
+    todas as telas dessa aplicação, é o padrão do Template Razor do
+    ASP.NET Core -->
+
 <body>
+    <!-- Inicio do cabeçalho -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <!-- Inicio da barra de navegação -->
+        <nav class="navbar navbar-expand-md navbar-light">
+            <!-- Inicio da área container do cabecalho -->
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LmjHotelWebApplication</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <img src="~/images/logo-hotel.jpg" class="nav-brand" id="logo">
+                <h4 class="ml-3">LMJ Hotel</h4>
+
+                <!-- Menu Hamburguer (Aparece somente quando o tamanho da tela á reduzido) -->
+                <button class="navbar-toggler text-right" data-toggle="collapse" data-target="#navegacao">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+                <!-- Inicio da configuração dos itens de naveção -->
+                <div class="collapse navbar-collapse mr-4" id="navegacao">
+                    <div class="nav flex-column ml-auto mt-3">
+                        <a class="link-tela-reserva" href="tela-reserva.html">Faça sua reserva</a>
+                        <ul class="navbar-nav mt-2">
+                            <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a class="nav-link" asp-controller="" asp-action="">Hóspede</a></li>
+                            <li><a class="nav-link" asp-controller="" asp-action="">Serviços</a></li>
+                            <li><a class="nav-link" asp-controller="" asp-action="">Sobre</a></li>
+                        </ul>
+                    </div>
+                </div><!-- Final da configuração dos itens de naveção -->
+            </div><!-- Final da área container do cabecalho -->
+        </nav><!--Final da barra de navegação-->
+    </header><!--Final do cabeçalho-->
+    <!-- Inicio da área de container do conteúdo principal de cada tela -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <!-- Inicio do rodapé do site -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - LmjHotelWebApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - LmjHotelWebApplication - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer><!-- Final do rodapé do site -->
+
+    <!-- Scripts padrão gerados pelo ASP NET CORE -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

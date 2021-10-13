@@ -1,71 +1,120 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿/* Estilo customizado para o cabeçalho do site */
+header {
+    margin-top: 5px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background: #C4C4C4;
+    border-radius: 10px;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+/* Estilo customizado para o cabeçalho LMJ Hotel na parte superior da tela */
+h4 {
+    color: #383838;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Estilo customizado para a imagens logotipo do hotel */
+#logo {
+    width: 120px;
+    height: 110px;
+    border-radius: 20px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Mudando a cor dos links de naveção na parte superior da tela */
+#navegacao ul a {
+    color: #383838;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+/* Muda a cor dos itens de naveção principal ao passar o mouse sobre */
+#navegacao ul a:hover {
+    color: #000080;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+
+/* Estilo customizado para o link Faça sua reserva na parte superior da tela */
+.link-tela-reserva {
+    border-radius: 15px;
+    background: #090C59;
+    color: #FFFFFF;
+    height: 26px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Estilo customizado para os links Cadastre-se e Esqueçi minha senha na tela de hóspede  */
+#links-abaixo-login a {
+    text-decoration: none;
+}
+
+/* Muda a cor dos linksCadastre-se e Esqueçi minha senha do cabeçalho ao passar o mouse sobre */
+#links-abaixo-login a:hover {
+    color: #000080;
+}
+
+/* Estilo customizado para o icone reserva na tela se solicitação e confirmação de reserva */
+.icone-reserva {
+    width: 180px;
+    height: 95px;
+}
+
+/* Estilo customizado para o ícone de usuário nas tela de hóspede e de cadastro */
+.user-image {
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 45px;
+    width: 70px;
+}
+
+/* Estilo customizado para todos os labels */
+label {
+    font-weight: bold;
+}
+
+/* Estilo customizado para todos os botões */
+.btn-config {
+    background: #090C59;
+    color: #FFFFFF;
+}
+
+/* Estilo customizado para o cabeçalho */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    #logo {
+        width: 55px;
+        height: 50px;
+        border-radius: 15px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #logo {
+        width: 95px;
+        height: 85px;
+        border-radius: 20px;
+    }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    h4 {
+        font-size: 36px;
+    }
 }
