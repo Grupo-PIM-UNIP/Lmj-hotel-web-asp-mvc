@@ -57,7 +57,7 @@ h4 {
 }
 
 /* Estilo customizado para o ícone de usuário nas tela de hóspede e de cadastro */
-.user-image {
+.user-icone {
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 45px;
@@ -73,6 +73,16 @@ label {
 .btn-config {
     background: #090C59;
     color: #FFFFFF;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
 /* Estilo customizado para o cabeçalho */
