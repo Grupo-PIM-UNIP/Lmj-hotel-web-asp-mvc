@@ -1,0 +1,63 @@
+﻿@model LmjHotelWebApplication.Models.Hospede
+
+@{
+    ViewData["title"] = "Formulário de cadastro";
+}
+
+<div class="d-flex justify-content-center mt-4">
+    <img src="~/images/person.jpg" class="user-icone" />
+    <h4 class="ml-4 mt-3">@ViewData["title"]</h4>
+</div>
+
+<!--Inicio do Form de Cadastro-->
+<form asp-action="Cadastrar" class="mt-4">
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label asp-for="Nome"></label>
+            <input asp-for="Nome" class="form-control " placeholder="Digite seu nome">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label asp-for="Cpf"></label>
+            <input asp-for="Cpf" class="form-control" placeholder="Digite seu CPF">
+            <span asp-validation-for="Cpf" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label asp-for="Telefone"></label>
+            <input asp-for="Telefone" class="form-control" placeholder="Digite seu telefone para contato">
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" placeholder="Digite seu Email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" class="form-control" placeholder="Informe uma senha para acesso">
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <input type="submit" value="Cadastrar" class="btn btn-config">
+        </div>
+    </div>
+</form><!--Final do Form de Cadastro-->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -29,14 +29,19 @@ h4 {
     color: #000080;
 }
 
+/* Removendo o underline ao passar o mouse em cima do Faça sua reserva */
+#navegacao a:hover {
+    text-decoration: none;
+}
+
 /* Estilo customizado para o link Faça sua reserva na parte superior da tela */
 .link-tela-reserva {
+    text-decoration: none;
+    text-align: center;
     border-radius: 15px;
     background: #090C59;
     color: #FFFFFF;
     height: 26px;
-    text-decoration: none;
-    text-align: center;
     font-weight: 600;
 }
 

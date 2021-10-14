@@ -1,5 +1,9 @@
+using LmjHotelWebApplication.Data;
+using LmjHotelWebApplication.Services.Contratos;
+using LmjHotelWebApplication.Services.Implementacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,16 @@ namespace LmjHotelWebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Obtendo a string de conexão do SQL Server do arquivo appsettings.json
+            var connectionString = Configuration["SqlServerConnection:SqlServerStringConnection"];
+
+            // Injetando a dependencia com o banco de dados SQL Server com entityframeworkecore
+            services.AddDbContext<SqlServerDbContext>(
+                options => options.UseSqlServer(connectionString));
+
+            // Injentando a dependencia da interface IHospedeService com a classe HospedeService 
+            services.AddScoped<IHospedeService, HospedeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
