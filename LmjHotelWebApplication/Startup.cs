@@ -37,6 +37,12 @@ namespace LmjHotelWebApplication
 
             // Injentando a dependencia da interface IHospedeService com a classe HospedeService 
             services.AddScoped<IHospedeService, HospedeService>();
+
+            // Injentando autentificação via cookies
+            /* Caso o usuário necessite de autentificação para acessar alguma tela e o mesmo não estiver logado,
+               o usuário será direcionado a tela abaixo para que o mesmo se autentifique */
+            services.AddAuthentication("cookies")
+                .AddCookie("cookies", options => options.LoginPath = "/hospede/login");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +56,9 @@ namespace LmjHotelWebApplication
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseAuthentication();
+
             app.UseStaticFiles();
 
             app.UseRouting();

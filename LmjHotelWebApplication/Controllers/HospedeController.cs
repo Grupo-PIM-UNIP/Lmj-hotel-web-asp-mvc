@@ -1,9 +1,12 @@
 ﻿using LmjHotelWebApplication.Models;
+using LmjHotelWebApplication.Models.ViewModels;
 using LmjHotelWebApplication.Services.Contratos;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Controllers
@@ -20,7 +23,7 @@ namespace LmjHotelWebApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(Login));
         }
 
         public async Task<IActionResult> Cadastrar()
@@ -34,6 +37,30 @@ namespace LmjHotelWebApplication.Controllers
         {
             await _hospedeService.Cadastrar(hospede);
             return RedirectToAction(nameof(Success));
+        }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginHospedeViewModel loginHospede)
+        {
+            var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
+            var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
+
+            if (hospede != null && validaHospede)
+            {
+                var usuarioLogado = new ClaimsIdentity("cookies");
+                usuarioLogado.AddClaim(new Claim(ClaimTypes.NameIdentifier, hospede.Id.ToString()));
+                usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
+
+                await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
+                return RedirectToAction(nameof(Success));
+            }
+            return NotFound();
         }
 
         public IActionResult Success()

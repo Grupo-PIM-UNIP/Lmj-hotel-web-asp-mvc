@@ -31,6 +31,11 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             return await _context.Hospede.FirstOrDefaultAsync(hospede => hospede.Id.Equals(id));
         }
 
+        public async Task<Hospede> BuscaPorEmail(string email)
+        {
+            return await _context.Hospede.FirstOrDefaultAsync(hospede => hospede.Email.Equals(email));
+        }
+
         public async Task Cadastrar(Hospede hospede)
         {
             string hashSenha = EncriptarSenhaSHA256(hospede.Senha);
@@ -38,6 +43,18 @@ namespace LmjHotelWebApplication.Services.Implementacoes
 
             _context.Add(hospede);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ValidarAcesso(long id, string email, string senha)
+        {
+            var hospede = await BuscaPorId(id);
+            string hashSenha = EncriptarSenhaSHA256(senha);
+
+            if (hospede.Email.Equals(email) && hospede.Senha.Equals(hashSenha))
+            {
+                return true;
+            }
+            return false;
         }
 
         // Método privado usado para encriptografar a senha do usuário antes de fazer a persistência no banco

@@ -1,27 +1,33 @@
-﻿<div class="d-flex justify-content-center mt-5">
+﻿@model LmjHotelWebApplication.Models.ViewModels.LoginHospedeViewModel
+
+@{
+    ViewData["title"] = "Login";
+}
+
+<div class="d-flex justify-content-center mt-5">
     <img src="~/images/person.jpg" class="user-icone" />
-    <h3 class="ml-4 mt-3">Login</h3>
+    <h3 class="ml-4 mt-3">@ViewData["title"]</h3>
 </div>
 
 <!-- Inicio do Form de Login -->
-<form>
+<form asp-action="Login">
     <div class="form-group">
         <div class="col-md-6 offset-md-3">
-            <label> Email </label>
-            <input type="password" name="" class="form-control" placeholder="Digite seu Email">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" placeholder="Digite seu Email">
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-6 offset-md-3">
-            <label> Senha </label>
-            <input type="password" name="" class="form-control" placeholder="Digite a sua senha de acesso">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" class="form-control" placeholder="Digite a sua senha de acesso">
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-6 offset-md-3">
-            <input type="submit" value="Login" class="btn btn-config" name="">
+            <input type="submit" value="Login" class="btn btn-config">
         </div>
     </div>
 </form><!-- Final do Form de Login -->
