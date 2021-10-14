@@ -45,6 +45,14 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             await _context.SaveChangesAsync();
         }
 
+        public async Task AtualizarCadastro(Hospede hospede)
+        {
+
+            _context.Hospede.Update(hospede);
+            await _context.SaveChangesAsync();
+
+        }
+
         public async Task<bool> ValidarAcesso(long id, string email, string senha)
         {
             var hospede = await BuscaPorId(id);
@@ -74,7 +82,7 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
 
             var sb = new StringBuilder();
-            for (int i=0; i < bytes.Length; i++)
+            for (int i = 0; i < bytes.Length; i++)
             {
                 sb.Append(bytes[i].ToString("x2"));
             }

@@ -40,3 +40,10 @@
         </dl>
     </div>
 </div>
+
+<!-- Link atualizar dados cadastrais -->
+<div class="d-flex justify-content-center mt-2">
+    <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-config">Editar</a>
+    <a asp-controller="Home" asp-action="Index" class="link-custom ml-3 pt-1">
+    Voltar a página principal</a>
+</div>

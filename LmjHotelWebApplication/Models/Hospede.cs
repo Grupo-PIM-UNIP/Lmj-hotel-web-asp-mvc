@@ -14,6 +14,7 @@ namespace LmjHotelWebApplication.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
+        [Display(Name = "CPF")]
         [StringLength(14, MinimumLength = 14, ErrorMessage = "Informe o CPF no formato XXX.XXX.XXX-XX")]
         public string Cpf { get; set; }
 

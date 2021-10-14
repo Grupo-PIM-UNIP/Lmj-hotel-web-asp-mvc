@@ -45,6 +45,24 @@ namespace LmjHotelWebApplication.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Editar(long? id)
+        {
+            var hospede = await _hospedeService.BuscaPorId(id.Value);
+            if (hospede != null)
+            {
+                return View(hospede);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, Hospede hospede)
+        {
+            await _hospedeService.AtualizarCadastro(hospede);
+            return RedirectToAction(nameof(Success));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginHospedeViewModel loginHospede)

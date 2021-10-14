@@ -45,14 +45,17 @@ h4 {
     font-weight: 600;
 }
 
-/* Estilo customizado para os links Cadastre-se e Esqueçi minha senha na tela de hóspede  */
-#links-abaixo-login a {
+/* Estilo customizado para os links das telas de login e detalhes */
+#links-abaixo-login a,
+.link-custom a {
     text-decoration: none;
 }
 
-/* Muda a cor dos linksCadastre-se e Esqueçi minha senha do cabeçalho ao passar o mouse sobre */
-#links-abaixo-login a:hover {
+/* Muda a cor dos links  ao passar o mouse sobre */
+#links-abaixo-login a:hover,
+.link-custom a:hover {
     color: #000080;
+    text-decoration: none;
 }
 
 /* Estilo customizado para o icone reserva na tela se solicitação e confirmação de reserva */
