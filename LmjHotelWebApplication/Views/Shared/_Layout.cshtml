@@ -36,6 +36,11 @@
                             <li><a class="nav-link" asp-controller="Hospede" asp-action="Login">Hóspede</a></li>
                             <li><a class="nav-link" asp-controller="" asp-action="">Serviços</a></li>
                             <li><a class="nav-link" asp-controller="" asp-action="">Sobre</a></li>
+                            @if (User.Identity.IsAuthenticated) 
+                            {
+                                <!-- Link para Logout, aparece somente quando o hóspede estiver logado -->
+                                <li><a class="nav-link" asp-controller="Hospede" asp-action="Logout">Logout</a></li>
+                            }
                         </ul>
                     </div>
                 </div><!-- Final da configuração dos itens de naveção -->
@@ -55,7 +60,6 @@
             &copy; 2021 - LmjHotelWebApplication - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer><!-- Final do rodapé do site -->
-
     <!-- Scripts padrão gerados pelo ASP NET CORE -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

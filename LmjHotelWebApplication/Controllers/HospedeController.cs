@@ -63,6 +63,12 @@ namespace LmjHotelWebApplication.Controllers
             return NotFound();
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(Success));
+        }
+
         public async Task<IActionResult> RedefinirSenha()
         {
             return View();
