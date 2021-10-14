@@ -63,6 +63,24 @@ namespace LmjHotelWebApplication.Controllers
             return NotFound();
         }
 
+        public async Task<IActionResult> RedefinirSenha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RedefinirSenha(ResetaSenhaViewModel newPassword)
+        {
+            var hospede = await _hospedeService.BuscaPorEmail(newPassword.Email);
+            if (hospede != null)
+            {
+                await _hospedeService.RedefinirSenha(hospede, newPassword.Senha);
+                return RedirectToAction(nameof(Success));
+            }
+            return View();
+        }
+
         public IActionResult Success()
         {
             return View();

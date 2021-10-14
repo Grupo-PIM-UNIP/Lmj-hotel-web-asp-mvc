@@ -57,6 +57,16 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             return false;
         }
 
+        public async Task RedefinirSenha(Hospede hospede, string senha)
+        {
+            string hashSenha = EncriptarSenhaSHA256(senha);
+            hospede.Senha = hashSenha;
+
+            _context.Update(hospede);
+            await _context.SaveChangesAsync();
+        }
+
+
         // Método privado usado para encriptografar a senha do usuário antes de fazer a persistência no banco
         private string EncriptarSenhaSHA256(string senha)
         {
