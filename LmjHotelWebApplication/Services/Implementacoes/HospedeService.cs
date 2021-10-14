@@ -1,6 +1,7 @@
 ﻿using LmjHotelWebApplication.Data;
 using LmjHotelWebApplication.Models;
 using LmjHotelWebApplication.Services.Contratos;
+using LmjHotelWebApplication.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -47,10 +48,21 @@ namespace LmjHotelWebApplication.Services.Implementacoes
 
         public async Task AtualizarCadastro(Hospede hospede)
         {
+            bool hospedeExiste = await _context.Hospede.AnyAsync(obj => obj.Id == hospede.Id);
+            if (!hospedeExiste)
+            {
+                throw new NotFoundException("Hóspede não encontrado");
+            }
 
-            _context.Hospede.Update(hospede);
-            await _context.SaveChangesAsync();
-
+            try
+            {
+                _context.Hospede.Update(hospede);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
 
         public async Task<bool> ValidarAcesso(long id, string email, string senha)
@@ -62,7 +74,7 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             {
                 return true;
             }
-            return false;
+            throw new IntegrityException("Usuário ou senha inválidos");
         }
 
         public async Task RedefinirSenha(Hospede hospede, string senha)
@@ -70,8 +82,15 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             string hashSenha = EncriptarSenhaSHA256(senha);
             hospede.Senha = hashSenha;
 
-            _context.Update(hospede);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Update(hospede);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
 
 

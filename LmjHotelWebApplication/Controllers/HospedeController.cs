@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
@@ -47,39 +48,61 @@ namespace LmjHotelWebApplication.Controllers
 
         public async Task<IActionResult> Editar(long? id)
         {
-            var hospede = await _hospedeService.BuscaPorId(id.Value);
-            if (hospede != null)
+            if (id == null)
             {
-                return View(hospede);
+                return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
-            return BadRequest();
+
+            var hospede = await _hospedeService.BuscaPorId(id.Value);
+            if (hospede == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Hóspede não encontrado" });
+            }
+
+            return View(hospede);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, Hospede hospede)
         {
-            await _hospedeService.AtualizarCadastro(hospede);
-            return RedirectToAction(nameof(Success));
+            if (id != hospede.Id)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do hóspede diferente do Id cadastrado" });
+            }
+
+            try
+            {
+                await _hospedeService.AtualizarCadastro(hospede);
+                return RedirectToAction(nameof(Success));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginHospedeViewModel loginHospede)
         {
-            var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
-            var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
-
-            if (hospede != null && validaHospede)
+            if (ModelState.IsValid)
             {
-                var usuarioLogado = new ClaimsIdentity("cookies");
-                usuarioLogado.AddClaim(new Claim(ClaimTypes.NameIdentifier, hospede.Id.ToString()));
-                usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
+                var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
+                var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
 
-                await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
-                return RedirectToAction(nameof(Success));
+                if (hospede != null && validaHospede)
+                {
+                    var usuarioLogado = new ClaimsIdentity("cookies");
+                    usuarioLogado.AddClaim(new Claim(ClaimTypes.NameIdentifier, hospede.Id.ToString()));
+                    usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
+
+                    await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
+                    return RedirectToAction(nameof(Success));
+                }
+                ModelState.AddModelError("", "Usuário ou Senha Inválida!");
             }
-            return NotFound();
+            return View();
         }
 
         public async Task<IActionResult> Logout()
@@ -98,23 +121,24 @@ namespace LmjHotelWebApplication.Controllers
         public async Task<IActionResult> RedefinirSenha(ResetaSenhaViewModel newPassword)
         {
             var hospede = await _hospedeService.BuscaPorEmail(newPassword.Email);
-            if (hospede != null)
+            if (hospede == null)
             {
-                await _hospedeService.RedefinirSenha(hospede, newPassword.Senha);
-                return RedirectToAction(nameof(Success));
+                return RedirectToAction(nameof(Error), new { message = "Email informado para redefinir sua senha não encontra-se cadastrado" });
             }
-            return View();
+
+            await _hospedeService.RedefinirSenha(hospede, newPassword.Senha);
+            return RedirectToAction(nameof(Success));
         }
 
         public async Task<IActionResult> Detalhes()
         {
-            long id;
+            long codigoHospede;
             foreach (var claim in User.Claims)
             {
                 if (claim.Type == ClaimTypes.NameIdentifier)
                 {
-                    id = long.Parse(claim.Value);
-                    var hospede = await _hospedeService.BuscaPorId(id);
+                    codigoHospede = long.Parse(claim.Value);
+                    var hospede = await _hospedeService.BuscaPorId(codigoHospede);
 
                     if (hospede != null)
                     {
@@ -122,12 +146,26 @@ namespace LmjHotelWebApplication.Controllers
                     }
                 }
             }
-            return BadRequest();
+            return RedirectToAction(nameof(Error), new
+            {
+                message = "Falha ao carregar os seus dados, tente novamente mais tarde," +
+                " caso o erro persista, favor entrar em contato com a administração da LMJ Hotel"
+            });
         }
 
         public IActionResult Success()
         {
             return View();
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
