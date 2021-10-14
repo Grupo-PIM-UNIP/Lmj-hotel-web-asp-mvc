@@ -1,0 +1,42 @@
+﻿@model LmjHotelWebApplication.Models.Hospede
+
+@{
+    ViewData["title"] = "Dados cadastrados";
+}
+
+<div class="d-flex justify-content-center mt-4">
+    <img src="~/images/person.jpg" class="user-icone" />
+    <h4 class="ml-4 mt-3">@ViewData["title"]</h4>
+</div>
+
+<div class="mt-2">
+    <hr />
+    <div class="d-flex justify-content-center">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cpf)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Telefone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+</div>

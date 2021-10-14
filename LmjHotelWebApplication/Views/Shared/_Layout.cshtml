@@ -33,14 +33,18 @@
                         <a class="link-tela-reserva" asp-controller="" asp-action="">Faça sua reserva</a>
                         <ul class="navbar-nav mt-2">
                             <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a class="nav-link" asp-controller="Hospede" asp-action="Login">Hóspede</a></li>
-                            <li><a class="nav-link" asp-controller="" asp-action="">Serviços</a></li>
-                            <li><a class="nav-link" asp-controller="" asp-action="">Sobre</a></li>
-                            @if (User.Identity.IsAuthenticated) 
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <!-- Link para Logout, aparece somente quando o hóspede estiver logado -->
+                                <!-- Links Ocultos, aparecem somente quando o usuário estiver logado -->
+                                <li><a class="nav-link" asp-controller="Hospede" asp-action="Detalhes">Hóspede</a></li>
                                 <li><a class="nav-link" asp-controller="Hospede" asp-action="Logout">Logout</a></li>
                             }
+                            else
+                            {
+                                <li><a class="nav-link" asp-controller="Hospede" asp-action="Login">Hóspede</a></li>
+                            }
+                            <li><a class="nav-link" asp-controller="" asp-action="">Serviços</a></li>
+                            <li><a class="nav-link" asp-controller="" asp-action="">Sobre</a></li>
                         </ul>
                     </div>
                 </div><!-- Final da configuração dos itens de naveção -->

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Controllers
@@ -85,6 +86,25 @@ namespace LmjHotelWebApplication.Controllers
                 return RedirectToAction(nameof(Success));
             }
             return View();
+        }
+
+        public async Task<IActionResult> Detalhes()
+        {
+            long id;
+            foreach (var claim in User.Claims)
+            {
+                if (claim.Type == ClaimTypes.NameIdentifier)
+                {
+                    id = long.Parse(claim.Value);
+                    var hospede = await _hospedeService.BuscaPorId(id);
+
+                    if (hospede != null)
+                    {
+                        return View(hospede);
+                    }
+                }
+            }
+            return BadRequest();
         }
 
         public IActionResult Success()
