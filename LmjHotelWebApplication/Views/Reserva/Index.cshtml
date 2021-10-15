@@ -1,0 +1,81 @@
+﻿<div class="d-flex justify-content-center mt-4 mr-5">
+    <img class="icone-reserva" src="~/images/icone-reserva-hotel.jpg" />
+</div>
+
+<div>
+    <form class="mt-4">
+        <div class="form-group ">
+            <div class="col-md-6 offset-md-3">
+                <label>Início da hospedagem</label>
+                <input class="form-control" type="date">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-6 offset-md-3">
+                <label>Término da hospedagem</label>
+                <input class="form-control" type="date">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <fieldset class="border">
+                    <legend>Deseja ficar hospedado em:</legend>
+                    <div class="form-group ml-2">
+                        <input type="radio" name="categoria">
+                        <span class="ml-1">Apartamento</span>
+                    </div>
+                    <div class="form-group ml-2">
+                        <input type="radio" name="categoria">
+                        <span class="ml-1">Suíte</span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <div class="col-md-6 offset-md-3">
+                <label>Total a pagar</label>
+                <div class="input-group input-group-prepend">
+                    <span class="input-group-text">$</span>
+                    <input class="form-control" type="text" readonly>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-center mt-4">Informe um cartão de crédito abaixo</h5>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <label>Número</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-6 offset-md-3">
+                <label>Validade</label>
+                <input class="form-control" type="date">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <label for="parcelas">Quantidade de parcelas</label>
+                <select class="form-control" id="parcelas">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3 mt-4">
+                <input type="submit" value="Solicitar Reserva" class="btn btn-config" name="">
+            </div>
+        </div>
+    </form>
+</div>
