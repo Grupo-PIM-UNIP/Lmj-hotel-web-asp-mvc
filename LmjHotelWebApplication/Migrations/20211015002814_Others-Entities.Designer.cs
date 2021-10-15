@@ -4,14 +4,16 @@ using LmjHotelWebApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LmjHotelWebApplication.Migrations
 {
     [DbContext(typeof(SqlServerDbContext))]
-    partial class SqlServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211015002814_Others-Entities")]
+    partial class OthersEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

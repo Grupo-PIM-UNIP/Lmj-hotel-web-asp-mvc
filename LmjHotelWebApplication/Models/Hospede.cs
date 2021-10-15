@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LmjHotelWebApplication.Models
@@ -31,5 +32,7 @@ namespace LmjHotelWebApplication.Models
         [Required(ErrorMessage = "Preenchimento obrigatório")]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+
+        public ICollection<Reserva> Reservas { get; } = new List<Reserva>();
     }
 }
