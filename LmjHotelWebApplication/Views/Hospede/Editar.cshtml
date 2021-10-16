@@ -39,6 +39,14 @@
 
     <div class="form-group">
         <div class="col-md-6 offset-md-3">
+            <label asp-for="CartaoCredito"></label>
+            <input asp-for="CartaoCredito" class="form-control">
+            <span asp-validation-for="CartaoCredito" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control">
             <span asp-validation-for="Email" class="text-danger"></span>

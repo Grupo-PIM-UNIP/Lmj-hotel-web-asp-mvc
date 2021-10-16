@@ -25,6 +25,12 @@ namespace LmjHotelWebApplication.Models
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
+        [Display(Name = "Número do cartão de crédito")]
+        [StringLength(19, MinimumLength = 19, ErrorMessage = "Informe o número do cartão de crédito formato XXXX-XXXX-XXXX-XXXX")]
+        [DataType(DataType.CreditCard)]
+        public string CartaoCredito { get; set; }
+
+        [Required(ErrorMessage = "Preenchimento obrigatório")]
         [EmailAddress(ErrorMessage = "Informe um email válido")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

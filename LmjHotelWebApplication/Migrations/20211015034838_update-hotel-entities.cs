@@ -3,18 +3,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LmjHotelWebApplication.Migrations
 {
-    public partial class OthersEntities : Migration
+    public partial class updatehotelentities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Telefone",
-                table: "Tb_Hospede",
-                type: "nvarchar(13)",
-                maxLength: 13,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+            migrationBuilder.CreateTable(
+                name: "Tb_Hospede",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
+                    Telefone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    CartaoCredito = table.Column<string>(type: "nvarchar(19)", maxLength: 19, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tb_Hospede", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Tb_Pagamento",
@@ -47,27 +56,6 @@ namespace LmjHotelWebApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tb_Cartao_Credito",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Numero = table.Column<int>(type: "int", nullable: false),
-                    Validade = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PagamentoId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tb_Cartao_Credito", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tb_Cartao_Credito_Tb_Pagamento_PagamentoId",
-                        column: x => x.PagamentoId,
-                        principalTable: "Tb_Pagamento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tb_Reserva",
                 columns: table => new
                 {
@@ -97,12 +85,6 @@ namespace LmjHotelWebApplication.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tb_Cartao_Credito_PagamentoId",
-                table: "Tb_Cartao_Credito",
-                column: "PagamentoId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tb_Reserva_HospedeId",
                 table: "Tb_Reserva",
                 column: "HospedeId");
@@ -116,25 +98,16 @@ namespace LmjHotelWebApplication.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tb_Cartao_Credito");
+                name: "Tb_Pagamento");
 
             migrationBuilder.DropTable(
                 name: "Tb_Reserva");
 
             migrationBuilder.DropTable(
-                name: "Tb_Pagamento");
+                name: "Tb_Hospede");
 
             migrationBuilder.DropTable(
                 name: "Tb_Quarto");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Telefone",
-                table: "Tb_Hospede",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(13)",
-                oldMaxLength: 13);
         }
     }
 }

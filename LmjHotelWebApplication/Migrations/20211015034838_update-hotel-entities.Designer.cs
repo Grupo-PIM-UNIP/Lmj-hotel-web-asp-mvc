@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LmjHotelWebApplication.Migrations
 {
     [DbContext(typeof(SqlServerDbContext))]
-    [Migration("20211015002814_Others-Entities")]
-    partial class OthersEntities
+    [Migration("20211015034838_update-hotel-entities")]
+    partial class updatehotelentities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,36 +21,17 @@ namespace LmjHotelWebApplication.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("LmjHotelWebApplication.Models.CartaoCredito", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<long>("PagamentoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("Validade")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PagamentoId")
-                        .IsUnique();
-
-                    b.ToTable("Tb_Cartao_Credito");
-                });
-
             modelBuilder.Entity("LmjHotelWebApplication.Models.Hospede", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
+
+                    b.Property<string>("CartaoCredito")
+                        .IsRequired()
+                        .HasMaxLength(19)
+                        .HasColumnType("nvarchar(19)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -153,17 +134,6 @@ namespace LmjHotelWebApplication.Migrations
                     b.ToTable("Tb_Reserva");
                 });
 
-            modelBuilder.Entity("LmjHotelWebApplication.Models.CartaoCredito", b =>
-                {
-                    b.HasOne("LmjHotelWebApplication.Models.Pagamento", "Pagamento")
-                        .WithOne("Cartao")
-                        .HasForeignKey("LmjHotelWebApplication.Models.CartaoCredito", "PagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pagamento");
-                });
-
             modelBuilder.Entity("LmjHotelWebApplication.Models.Reserva", b =>
                 {
                     b.HasOne("LmjHotelWebApplication.Models.Hospede", "Hospede")
@@ -186,11 +156,6 @@ namespace LmjHotelWebApplication.Migrations
             modelBuilder.Entity("LmjHotelWebApplication.Models.Hospede", b =>
                 {
                     b.Navigation("Reservas");
-                });
-
-            modelBuilder.Entity("LmjHotelWebApplication.Models.Pagamento", b =>
-                {
-                    b.Navigation("Cartao");
                 });
 
             modelBuilder.Entity("LmjHotelWebApplication.Models.Quarto", b =>
