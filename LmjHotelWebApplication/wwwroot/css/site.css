@@ -46,14 +46,12 @@ h4 {
 }
 
 /* Estilo customizado para os links das telas de login e detalhes */
-#links-abaixo-login a,
-.link-custom a {
+.link-custom a, #links-abaixo-login a {
     text-decoration: none;
 }
 
 /* Muda a cor dos links  ao passar o mouse sobre */
-#links-abaixo-login a:hover,
-.link-custom a:hover {
+.link-custom a:hover, #links-abaixo-login a:hover {
     color: #000080;
     text-decoration: none;
 }
@@ -93,8 +91,9 @@ body {
     margin-bottom: 60px;
 }
 
-/* Estilo customizado para o cabeçalho */
+/* Estilo customizado para o rodapé */
 footer {
+    background: #C4C4C4;
     position: absolute;
     bottom: 0;
     width: 100%;

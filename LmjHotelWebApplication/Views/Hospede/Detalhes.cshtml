@@ -4,52 +4,56 @@
     ViewData["title"] = "Dados cadastrados";
 }
 
-<div class="d-flex justify-content-center mt-4">
-    <img src="~/images/person.jpg" class="user-icone" />
-    <h4 class="ml-4 mt-3">@ViewData["title"]</h4>
-</div>
-
-<div class="mt-2">
-    <hr />
-    <div class="d-flex justify-content-center">
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Cpf)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Telefone)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CartaoCredito)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CartaoCredito)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-        </dl>
+<div>
+    <div class="d-flex justify-content-center mt-4">
+        <img src="~/images/person.jpg" class="user-icone" />
+        <h4 class="ml-4 mt-3">@ViewData["title"]</h4>
     </div>
-</div>
 
-<!-- Link atualizar dados cadastrais -->
-<div class="d-flex justify-content-center mt-2">
-    <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-config">Editar</a>
-    <a asp-controller="Home" asp-action="Index" class="link-custom ml-3 pt-1">
-    Voltar a página principal</a>
+    <!-- Inicio da área de detalhes onde, o hóspede verifica seus dados cadastrados -->
+    <div class="mt-2">
+        <hr />
+        <div class="d-flex justify-content-center">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cpf)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cpf)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Telefone)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CartaoCredito)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CartaoCredito)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </dl>
+        </div>
+    </div><!-- Final da área de detalhes onde, o hóspede verifica seus dados cadastrados -->
+
+    <!-- Links opcionais abaixo da área de detalhes  -->
+    <div class="d-flex justify-content-center mt-2">
+        <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-config">Editar</a>
+        <a asp-controller="Home" asp-action="Index" class="link-custom ml-3 pt-1">
+            Voltar a página principal
+        </a>
+    </div>
 </div>

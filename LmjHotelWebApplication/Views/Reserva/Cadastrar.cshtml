@@ -4,66 +4,69 @@
     ViewData["title"] = "Formulário de reserva";
 }
 
-<div class="d-flex justify-content-center mt-4 mr-5">
-    <img class="icone-reserva" src="~/images/icone-reserva-hotel.jpg" />
-</div>
-
 <div>
-    <form asp-action="Cadastrar" class="mt-4">
-        <div class="form-group">
-            <input type="hidden" asp-for="Id" /> 
-            <div class="col-md-6 offset-md-3">
-                <label>Início da Hospedagem</label>
-                <input asp-for="Reserva.Inicio" id="data-inicio" class="form-control" />
-                <span asp-validation-for="Reserva.Inicio" class="text-danger"></span>
-            </div>
-        </div>
+    <div class="d-flex justify-content-center mt-4 mr-5">
+        <img class="icone-reserva" src="~/images/icone-reserva-hotel.jpg" />
+    </div>
 
-        <div class="form-group">
-            <div class=" col-md-6 offset-md-3">
-                <label>Término da Hospedage</label>
-                <input asp-for="Reserva.Fim" id="data-termino" class="form-control" />
-                <span asp-validation-for="Reserva.Fim" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label>Total a pagar</label>
-                <div class="input-group input-group-prepend">
-                    <span class="input-group-text">$</span>
-                    <input id="valor-total" type="text" class="form-control" readonly />
-                    <span>
-                        <input onclick="calcularValorTotalHospedagem()" type="button" value="Calcular" class="btn btn-config" />
-                    </span>
+    <div>
+        <!-- Inicio do Form de Reserva -->
+        <form asp-action="Cadastrar" class="mt-4">
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+                <div class="col-md-6 offset-md-3">
+                    <label>Início da Hospedagem</label>
+                    <input asp-for="Reserva.Inicio" id="data-inicio" class="form-control" />
+                    <span asp-validation-for="Reserva.Inicio" class="text-danger"></span>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class=" col-md-6 offset-md-3">
-                <label>Quantidades de parcelas</label>
-                <input asp-for="Pagamento.QtdParcelas" class="form-control" />
-                <span asp-validation-for="Pagamento.QtdParcelas" class="text-danger"></span>
+            <div class="form-group">
+                <div class=" col-md-6 offset-md-3">
+                    <label>Término da Hospedage</label>
+                    <input asp-for="Reserva.Fim" id="data-termino" class="form-control" />
+                    <span asp-validation-for="Reserva.Fim" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <h5 class="text-center mt-4">Selecione um quarto abaixo</h5>
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Reserva.QuartoId"></label>
-                <select asp-for="Reserva.QuartoId" asp-items="@(new
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label>Total a pagar</label>
+                    <div class="input-group input-group-prepend">
+                        <span class="input-group-text">$</span>
+                        <input id="valor-total" type="text" class="form-control" readonly />
+                        <span>
+                            <input onclick="calcularValorTotalHospedagem()" type="button" value="Calcular" class="btn btn-config" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class=" col-md-6 offset-md-3">
+                    <label>Quantidades de parcelas</label>
+                    <input asp-for="Pagamento.QtdParcelas" class="form-control" />
+                    <span asp-validation-for="Pagamento.QtdParcelas" class="text-danger"></span>
+                </div>
+            </div>
+
+            <h5 class="text-center mt-4">Selecione um quarto abaixo</h5>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Reserva.QuartoId"></label>
+                    <select asp-for="Reserva.QuartoId" asp-items="@(new
                     SelectList(Model.Quartos, "Id", "Numero"))" class="form-control"></select>
-                <span asp-validation-for="Reserva.QuartoId" class="text-danger"></span>
+                    <span asp-validation-for="Reserva.QuartoId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3 mt-4">
-                <input asp-route-id="@Model.Id" type="submit" value="Solicitar Reserva" class="btn btn-config" />
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3 mt-4">
+                    <input asp-route-id="@Model.Id" type="submit" value="Solicitar Reserva" class="btn btn-config" />
+                </div>
             </div>
-        </div>
-    </form>
+        </form><!-- Final do Form de Reserva -->
+    </div>
 </div>
 
 @section Scripts {

@@ -51,7 +51,8 @@
             </div><!-- Final da área container do cabecalho -->
         </nav><!--Final da barra de navegação-->
     </header><!--Final do cabeçalho-->
-    <!-- Inicio da área de container do conteúdo principal de cada tela -->
+
+    <!-- Inicio da área de container do conteúdo principal de cada View -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -60,10 +61,11 @@
 
     <!-- Inicio do rodapé do site -->
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - LmjHotelWebApplication - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center">
+            &copy;<strong>LMJ Hotel - Prestando serviços de Hotelaria desde 2002</strong> - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer><!-- Final do rodapé do site -->
+
     <!-- Scripts padrão gerados pelo ASP NET CORE -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
