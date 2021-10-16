@@ -3,9 +3,6 @@ using LmjHotelWebApplication.Models;
 using LmjHotelWebApplication.Services.Contratos;
 using LmjHotelWebApplication.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,7 +89,6 @@ namespace LmjHotelWebApplication.Services.Implementacoes
                 throw new DbConcurrencyException(e.Message);
             }
         }
-
 
         // Método privado usado para encriptografar a senha do usuário antes de fazer a persistência no banco
         private string EncriptarSenhaSHA256(string senha)

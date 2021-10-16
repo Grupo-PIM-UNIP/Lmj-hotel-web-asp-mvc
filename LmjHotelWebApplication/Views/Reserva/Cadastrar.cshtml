@@ -10,35 +10,20 @@
 
 <div>
     <form asp-action="Cadastrar" class="mt-4">
-        <div class="form-group ">
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" /> 
             <div class="col-md-6 offset-md-3">
-                <label>Início da hospedagem</label>
-                <input asp-for="Reserva.Inicio" class="form-control">
+                <label>Início da Hospedagem</label>
+                <input asp-for="Reserva.Inicio" id="data-inicio" class="form-control" />
                 <span asp-validation-for="Reserva.Inicio" class="text-danger"></span>
             </div>
         </div>
 
         <div class="form-group">
             <div class=" col-md-6 offset-md-3">
-                <label>Término da hospedagem</label>
-                <input asp-for="Reserva.Fim" class="form-control">
+                <label>Término da Hospedage</label>
+                <input asp-for="Reserva.Fim" id="data-termino" class="form-control" />
                 <span asp-validation-for="Reserva.Fim" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <fieldset class="border">
-                    <legend>Deseja ficar hospedado em:</legend>
-                    <div class="form-group ml-2">
-                        <input asp-for="Quarto.Categoria" type="radio" name="categoria" value="2">
-                        <span class="ml-1">Apartamento</span>
-                    </div>
-                    <div class="form-group ml-2">
-                        <input asp-for="Quarto.Categoria" type="radio" name="categoria" value="1">
-                        <span class="ml-1">Suíte</span>
-                    </div>
-                </fieldset>
             </div>
         </div>
 
@@ -47,7 +32,10 @@
                 <label>Total a pagar</label>
                 <div class="input-group input-group-prepend">
                     <span class="input-group-text">$</span>
-                    <input class="form-control" type="text" readonly>
+                    <input id="valor-total" type="text" class="form-control" readonly />
+                    <span>
+                        <input onclick="calcularValorTotalHospedagem()" type="button" value="Calcular" class="btn btn-config" />
+                    </span>
                 </div>
             </div>
         </div>
@@ -55,14 +43,24 @@
         <div class="form-group">
             <div class=" col-md-6 offset-md-3">
                 <label>Quantidades de parcelas</label>
-                <input asp-for="Pagamento.QtdParcelas" class="form-control">
+                <input asp-for="Pagamento.QtdParcelas" class="form-control" />
                 <span asp-validation-for="Pagamento.QtdParcelas" class="text-danger"></span>
+            </div>
+        </div>
+
+        <h5 class="text-center mt-4">Selecione um quarto abaixo</h5>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <label asp-for="Reserva.QuartoId"></label>
+                <select asp-for="Reserva.QuartoId" asp-items="@(new
+                    SelectList(Model.Quartos, "Id", "Numero"))" class="form-control"></select>
+                <span asp-validation-for="Reserva.QuartoId" class="text-danger"></span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3 mt-4">
-                <input type="submit" value="Solicitar Reserva" class="btn btn-config">
+                <input asp-route-id="@Model.Id" type="submit" value="Solicitar Reserva" class="btn btn-config" />
             </div>
         </div>
     </form>

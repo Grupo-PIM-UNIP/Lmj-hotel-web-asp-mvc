@@ -38,6 +38,9 @@ namespace LmjHotelWebApplication
             // Injentando a dependencia da interface IHospedeService com a classe HospedeService 
             services.AddScoped<IHospedeService, HospedeService>();
 
+            services.AddScoped<IReservaService, ReservaService>();
+            services.AddScoped<IQuartoService, QuartoService>();
+
             // Injentando autentificação via cookies
             /* Caso o usuário necessite de autentificação para acessar alguma tela e o mesmo não estiver logado,
                o usuário será direcionado a tela abaixo para que o mesmo se autentifique */

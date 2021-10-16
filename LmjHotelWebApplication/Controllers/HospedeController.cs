@@ -76,6 +76,7 @@ namespace LmjHotelWebApplication.Controllers
                 await _hospedeService.AtualizarCadastro(hospede);
                 return RedirectToAction(nameof(Success));
             }
+
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });

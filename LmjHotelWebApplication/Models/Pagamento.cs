@@ -9,11 +9,14 @@ namespace LmjHotelWebApplication.Models
     {
         [Key]
         public long Id { get; set; }
+
         public DateTime Instante { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
-        [Range(1, 10, ErrorMessage = "Número mínimo de parcelas é {1} e o máximo é {2}")]
+        [Range(1, 12, ErrorMessage = "Número mínimo de parcelas é {1} e o máximo é {2}")]
         [DataType(DataType.CreditCard)]
         public int QtdParcelas { get; set; }
+
+        public Reserva Reserva { get; set; }
     }
 }

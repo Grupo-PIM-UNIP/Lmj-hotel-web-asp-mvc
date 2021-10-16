@@ -84,16 +84,10 @@ namespace LmjHotelWebApplication.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<int>("Categoria")
-                        .HasColumnType("int");
-
                     b.Property<int>("Estado")
                         .HasColumnType("int");
 
                     b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pavimento")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -108,9 +102,6 @@ namespace LmjHotelWebApplication.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<double>("Diaria")
-                        .HasColumnType("float");
-
                     b.Property<DateTime>("Fim")
                         .HasColumnType("datetime2");
 
@@ -120,12 +111,18 @@ namespace LmjHotelWebApplication.Migrations
                     b.Property<DateTime>("Inicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("PagamentoId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("QuartoId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HospedeId");
+
+                    b.HasIndex("PagamentoId")
+                        .IsUnique();
 
                     b.HasIndex("QuartoId");
 
@@ -140,6 +137,12 @@ namespace LmjHotelWebApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LmjHotelWebApplication.Models.Pagamento", "Pagamento")
+                        .WithOne("Reserva")
+                        .HasForeignKey("LmjHotelWebApplication.Models.Reserva", "PagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LmjHotelWebApplication.Models.Quarto", "Quarto")
                         .WithMany("Reservas")
                         .HasForeignKey("QuartoId")
@@ -148,12 +151,19 @@ namespace LmjHotelWebApplication.Migrations
 
                     b.Navigation("Hospede");
 
+                    b.Navigation("Pagamento");
+
                     b.Navigation("Quarto");
                 });
 
             modelBuilder.Entity("LmjHotelWebApplication.Models.Hospede", b =>
                 {
                     b.Navigation("Reservas");
+                });
+
+            modelBuilder.Entity("LmjHotelWebApplication.Models.Pagamento", b =>
+                {
+                    b.Navigation("Reserva");
                 });
 
             modelBuilder.Entity("LmjHotelWebApplication.Models.Quarto", b =>

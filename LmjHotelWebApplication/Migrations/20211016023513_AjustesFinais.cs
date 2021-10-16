@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LmjHotelWebApplication.Migrations
 {
-    public partial class updatehotelentities : Migration
+    public partial class AjustesFinais : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,9 +45,7 @@ namespace LmjHotelWebApplication.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Pavimento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Numero = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Categoria = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -63,9 +61,9 @@ namespace LmjHotelWebApplication.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Fim = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Diaria = table.Column<double>(type: "float", nullable: false),
                     HospedeId = table.Column<long>(type: "bigint", nullable: false),
-                    QuartoId = table.Column<long>(type: "bigint", nullable: false)
+                    QuartoId = table.Column<long>(type: "bigint", nullable: false),
+                    PagamentoId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,6 +72,12 @@ namespace LmjHotelWebApplication.Migrations
                         name: "FK_Tb_Reserva_Tb_Hospede_HospedeId",
                         column: x => x.HospedeId,
                         principalTable: "Tb_Hospede",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tb_Reserva_Tb_Pagamento_PagamentoId",
+                        column: x => x.PagamentoId,
+                        principalTable: "Tb_Pagamento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -90,6 +94,12 @@ namespace LmjHotelWebApplication.Migrations
                 column: "HospedeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tb_Reserva_PagamentoId",
+                table: "Tb_Reserva",
+                column: "PagamentoId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tb_Reserva_QuartoId",
                 table: "Tb_Reserva",
                 column: "QuartoId");
@@ -98,13 +108,13 @@ namespace LmjHotelWebApplication.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tb_Pagamento");
-
-            migrationBuilder.DropTable(
                 name: "Tb_Reserva");
 
             migrationBuilder.DropTable(
                 name: "Tb_Hospede");
+
+            migrationBuilder.DropTable(
+                name: "Tb_Pagamento");
 
             migrationBuilder.DropTable(
                 name: "Tb_Quarto");

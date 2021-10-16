@@ -19,10 +19,15 @@ namespace LmjHotelWebApplication.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Fim { get; set; }
-        public double Diaria { get; set; }
+
         public long HospedeId { get; set; }
         public Hospede Hospede { get; set; }
+
+        [Display(Name = "Quarto")]
         public long QuartoId { get; set; }
         public Quarto Quarto { get; set; }
+
+        public long PagamentoId { get; set; }
+        public Pagamento Pagamento { get; set; }
     }
 }
