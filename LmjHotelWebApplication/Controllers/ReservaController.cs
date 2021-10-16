@@ -92,7 +92,7 @@ namespace LmjHotelWebApplication.Controllers
                 await _quartoService.Alugar(reserva.QuartoId);
                 await _reservaService.SalvarPagamento(pagamento);
                 await _reservaService.SalvarReserva(reserva);
-                return RedirectToAction(nameof(Success));
+                return RedirectToAction(nameof(Success), new { message = "Reserva efetuada com sucesso" });
             }
             catch (ApplicationException e)
             {
@@ -100,9 +100,13 @@ namespace LmjHotelWebApplication.Controllers
             }
         }
 
-        public IActionResult Success()
+        public IActionResult Success(string message)
         {
-            return View();
+            var successViewModel = new SuccessViewModel
+            {
+                Message = message,
+            };
+            return View(successViewModel);
         }
 
         public IActionResult Error(string message)

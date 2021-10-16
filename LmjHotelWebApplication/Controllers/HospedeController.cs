@@ -35,12 +35,7 @@ namespace LmjHotelWebApplication.Controllers
         public async Task<IActionResult> Cadastrar(Hospede hospede)
         {
             await _hospedeService.Cadastrar(hospede);
-            return RedirectToAction(nameof(Success));
-        }
-
-        public async Task<IActionResult> Login()
-        {
-            return View();
+            return RedirectToAction(nameof(Success), new { message = "Cadastro realizado com sucesso" });
         }
 
         public async Task<IActionResult> Editar(long? id)
@@ -71,13 +66,18 @@ namespace LmjHotelWebApplication.Controllers
             try
             {
                 await _hospedeService.AtualizarCadastro(hospede);
-                return RedirectToAction(nameof(Success));
+                return RedirectToAction(nameof(Success), new { message = "Cadastro atualizado com sucesso" });
             }
 
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+        }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -131,7 +131,7 @@ namespace LmjHotelWebApplication.Controllers
             }
 
             await _hospedeService.RedefinirSenha(hospede, newPassword.Senha);
-            return RedirectToAction(nameof(Success));
+            return RedirectToAction(nameof(Success), new { message = "Senha redefinida com succeso" });
         }
 
         public async Task<IActionResult> Detalhes()
@@ -157,9 +157,13 @@ namespace LmjHotelWebApplication.Controllers
             });
         }
 
-        public IActionResult Success()
+        public IActionResult Success(string message)
         {
-            return View();
+            var successViewModel = new SuccessViewModel
+            {
+                Message = message,
+            };
+            return View(successViewModel);
         }
 
         public IActionResult Error(string message)
