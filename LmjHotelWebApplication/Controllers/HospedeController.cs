@@ -87,23 +87,29 @@ namespace LmjHotelWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginHospedeViewModel loginHospede)
         {
-            if (ModelState.IsValid)
+            var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
+            if (hospede == null)
             {
-                var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
-                var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
-
-                if (hospede != null && validaHospede)
+                return RedirectToAction(nameof(Error), new
                 {
-                    var usuarioLogado = new ClaimsIdentity("cookies");
-                    usuarioLogado.AddClaim(new Claim(ClaimTypes.NameIdentifier, hospede.Id.ToString()));
-                    usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
-
-                    await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
-                    return RedirectToAction(nameof(Success));
-                }
-                ModelState.AddModelError("", "Usuário ou Senha Inválida!");
+                    message = "Hóspede não encontrado, verifique se você " +
+                              " digitou o seu email corretamente"
+                });
             }
-            return View();
+
+            var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
+            if (!validaHospede)
+            {
+                ModelState.AddModelError("", "Usuário ou senha inválida!");
+                return View();
+            }
+
+            var usuarioLogado = new ClaimsIdentity("cookies");
+            usuarioLogado.AddClaim(new Claim(ClaimTypes.NameIdentifier, hospede.Id.ToString()));
+            usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
+
+            await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
+            return RedirectToAction(nameof(Success));
         }
 
         public async Task<IActionResult> Logout()

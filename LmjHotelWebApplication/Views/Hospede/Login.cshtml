@@ -12,6 +12,9 @@
 
     <!-- Inicio do Form de Login -->
     <form asp-action="Login">
+        <div class=" col-md-6 offset-md-3 mt-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="Email"></label>

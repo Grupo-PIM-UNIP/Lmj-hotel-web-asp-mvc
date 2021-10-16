@@ -79,6 +79,7 @@ label {
 .btn-config {
     background: #090C59;
     color: #FFFFFF;
+    font-weight: 600;
 }
 
 html {

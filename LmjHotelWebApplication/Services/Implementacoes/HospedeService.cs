@@ -71,7 +71,7 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             {
                 return true;
             }
-            throw new IntegrityException("Usuário ou senha inválidos");
+            return false;
         }
 
         public async Task RedefinirSenha(Hospede hospede, string senha)
