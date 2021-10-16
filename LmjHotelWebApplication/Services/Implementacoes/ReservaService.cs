@@ -1,17 +1,15 @@
 ﻿using LmjHotelWebApplication.Data;
 using LmjHotelWebApplication.Models;
 using LmjHotelWebApplication.Services.Contratos;
-using LmjHotelWebApplication.Services.Exceptions;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Services.Implementacoes
 {
+    // Classe ReservaService implementando o contrato estabelecido na interface IReservaService
     public class ReservaService : IReservaService
     {
+        // Injentando a dependência de SqlServerDbContext que realiza operações de acesso ao banco 
         private readonly SqlServerDbContext _context;
 
         public ReservaService(SqlServerDbContext context)
@@ -19,10 +17,9 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             _context = context;
         }
 
-        public async Task<Reserva> BuscarPorId(long id)
-        {
-            return await _context.Reserva.FirstOrDefaultAsync(reserva => reserva.Id.Equals(id));
-        }
+        /* As Tasks estão sendo usadas para realizarmos operações assíncronas de acesso a dados,
+         isso melhora a perfomance da aplicação, para isso devemos colocar a palavra async antes
+         da palavra Task e acrescentar a palavra await antes da operação a ser realizada com o banco */
 
         public async Task SalvarReserva(Reserva reserva)
         {

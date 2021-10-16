@@ -7,10 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace LmjHotelWebApplication
 {
@@ -31,13 +28,19 @@ namespace LmjHotelWebApplication
             // Obtendo a string de conexão do SQL Server do arquivo appsettings.json
             var connectionString = Configuration["SqlServerConnection:SqlServerStringConnection"];
 
+            // (Opcional) Obtendo o Assembly do sua máquina local
+            var myAssemblyComputer = typeof(Startup)
+                .GetTypeInfo().Assembly
+                .GetName().Name;
+
             // Injetando a dependencia com o banco de dados SQL Server com entityframeworkecore
             services.AddDbContext<SqlServerDbContext>(
-                options => options.UseSqlServer(connectionString));
+                options => options.UseSqlServer(connectionString, sql =>
+                sql.MigrationsAssembly(myAssemblyComputer)));
 
-            // Injentando a dependencia da interface IHospedeService com a classe HospedeService 
+            /* Injentando a dependencia das camadas de serviços da aplicação,
+               indicando ao framework as interfaces junto a suas implementações  */
             services.AddScoped<IHospedeService, HospedeService>();
-
             services.AddScoped<IReservaService, ReservaService>();
             services.AddScoped<IQuartoService, QuartoService>();
 

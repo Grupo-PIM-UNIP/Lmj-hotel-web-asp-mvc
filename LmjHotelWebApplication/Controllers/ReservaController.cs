@@ -1,13 +1,10 @@
 ﻿using LmjHotelWebApplication.Models;
-using LmjHotelWebApplication.Models.Enums;
 using LmjHotelWebApplication.Models.ViewModels;
 using LmjHotelWebApplication.Services.Contratos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -16,6 +13,8 @@ namespace LmjHotelWebApplication.Controllers
     [Authorize]
     public class ReservaController : Controller
     {
+
+        // Injentando a dependência com os serviços a qual a ReservaController interage no sistema
         private readonly IReservaService _reservaService;
         private readonly IQuartoService _quartoService;
         private readonly IHospedeService _hospedeService;
@@ -95,7 +94,6 @@ namespace LmjHotelWebApplication.Controllers
                 await _reservaService.SalvarReserva(reserva);
                 return RedirectToAction(nameof(Success));
             }
-
             catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });

@@ -4,11 +4,8 @@ using LmjHotelWebApplication.Services.Contratos;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Controllers
@@ -109,13 +106,13 @@ namespace LmjHotelWebApplication.Controllers
             usuarioLogado.AddClaim(new Claim(ClaimTypes.Name, hospede.Nome));
 
             await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(usuarioLogado));
-            return RedirectToAction(nameof(Success));
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction(nameof(Success));
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> RedefinirSenha()

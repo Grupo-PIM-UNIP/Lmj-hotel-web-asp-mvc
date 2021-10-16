@@ -10,14 +10,20 @@ using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Services.Implementacoes
 {
+    // Classe QuartoService implementando o contrato estabelecido na interface IQuartoService
     public class QuartoService : IQuartoService
     {
+        // Injentando a dependência de SqlServerDbContext que realiza operações de acesso ao banco 
         private readonly SqlServerDbContext _context;
 
         public QuartoService(SqlServerDbContext context)
         {
             _context = context;
         }
+
+        /* As Tasks estão sendo usadas para realizarmos operações assíncronas de acesso a dados,
+         isso melhora a perfomance da aplicação, para isso devemos colocar a palavra async antes
+         da palavra Task e acrescentar a palavra await antes da operação a ser realizada com o banco */
 
         public async Task<Quarto> BuscarPorId(long id)
         {
