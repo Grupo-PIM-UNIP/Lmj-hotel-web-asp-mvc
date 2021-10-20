@@ -2,6 +2,9 @@
 
 @{
     ViewData["title"] = "Formulário de reserva";
+
+    var reserva = new Reserva();
+    double diariaHotel = reserva.PrecoPorDiaria;
 }
 
 <div>
@@ -12,20 +15,34 @@
     <div>
         <!-- Inicio do Form de Reserva -->
         <form asp-action="Cadastrar" class="mt-4">
+            <div class=" col-md-6 offset-md-3 mt-4">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+
             <div class="form-group">
                 <input type="hidden" asp-for="Id" />
                 <div class="col-md-6 offset-md-3">
                     <label>Início da Hospedagem</label>
-                    <input asp-for="Reserva.Inicio" id="data-inicio" class="form-control" />
-                    <span asp-validation-for="Reserva.Inicio" class="text-danger"></span>
+                    <input asp-for="Reserva.DataInicio" id="data-inicio" class="form-control" />
+                    <span asp-validation-for="Reserva.DataInicio" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class=" col-md-6 offset-md-3">
                     <label>Término da Hospedage</label>
-                    <input asp-for="Reserva.Fim" id="data-termino" class="form-control" />
-                    <span asp-validation-for="Reserva.Fim" class="text-danger"></span>
+                    <input asp-for="Reserva.DataFim" id="data-termino" class="form-control" />
+                    <span asp-validation-for="Reserva.DataFim" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label>Diária do Hotel</label>
+                    <div class="input-group input-group-prepend">
+                        <span class="input-group-text">$</span>
+                        <input asp-for="Reserva.PrecoPorDiaria" value="@diariaHotel" class="form-control" readonly />
+                    </div>
                 </div>
             </div>
 
@@ -34,7 +51,7 @@
                     <label>Total a pagar</label>
                     <div class="input-group input-group-prepend">
                         <span class="input-group-text">$</span>
-                        <input id="valor-total" type="text" class="form-control" readonly />
+                        <input asp-for="Pagamento.Valor" type="text" id="valor-total" class="form-control" readonly />
                         <span>
                             <input onclick="calcularValorTotalHospedagem()" type="button" value="Calcular" class="btn btn-config" />
                         </span>
@@ -55,7 +72,7 @@
                 <div class="col-md-6 offset-md-3">
                     <label asp-for="Reserva.QuartoId"></label>
                     <select asp-for="Reserva.QuartoId" asp-items="@(new
-                    SelectList(Model.Quartos, "Id", "Numero"))" class="form-control"></select>
+                    SelectList(Model.Quartos, "Id", "Identificacao"))" class="form-control"></select>
                     <span asp-validation-for="Reserva.QuartoId" class="text-danger"></span>
                 </div>
             </div>

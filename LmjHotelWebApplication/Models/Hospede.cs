@@ -11,22 +11,26 @@ namespace LmjHotelWebApplication.Models
         public long Id { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres")]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres")]
+        public string Sobrenome { get; set; }
+
+        [Required(ErrorMessage = "Preenchimento obrigatório")]
         [Display(Name = "CPF")]
-        [StringLength(14, MinimumLength = 14, ErrorMessage = "Informe o CPF no formato XXX.XXX.XXX-XX")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Informe os 11 dígitos do CPF")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
+        [StringLength(11, MinimumLength = 10, ErrorMessage = "Informe o número de seu telefone com 9 ou 8 dígitos após o DDD")]
         [DataType(DataType.PhoneNumber)]
-        [StringLength(13, MinimumLength = 12, ErrorMessage = "Informe o Telefone no formato XX XXXX-XXXX com 9 ou 8 digitos após o DDD")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]
-        [Display(Name = "Número do cartão de crédito")]
-        [StringLength(19, MinimumLength = 19, ErrorMessage = "Informe o número do cartão de crédito formato XXXX-XXXX-XXXX-XXXX")]
+        [Display(Name = "Número cartão de crédito")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = "Informe os 16 números do seu cartão de crédito")]
         [DataType(DataType.CreditCard)]
         public string CartaoCredito { get; set; }
 

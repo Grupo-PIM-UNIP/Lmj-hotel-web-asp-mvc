@@ -34,6 +34,13 @@ namespace LmjHotelWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Cadastrar(Hospede hospede)
         {
+            var usuario = await _hospedeService.BuscaPorEmail(hospede.Email);
+            if (usuario != null)
+            {
+                ModelState.AddModelError("", "Já existe um usuário cadastrado com email informado");
+                return View();
+            }
+
             await _hospedeService.Cadastrar(hospede);
             return RedirectToAction(nameof(Success), new { message = "Cadastro realizado com sucesso" });
         }
@@ -87,11 +94,8 @@ namespace LmjHotelWebApplication.Controllers
             var hospede = await _hospedeService.BuscaPorEmail(loginHospede.Email);
             if (hospede == null)
             {
-                return RedirectToAction(nameof(Error), new
-                {
-                    message = "Hóspede não encontrado, verifique se você " +
-                              " digitou o seu email corretamente"
-                });
+                ModelState.AddModelError("", "Usuário ou senha inválida!");
+                return View();
             }
 
             var validaHospede = await _hospedeService.ValidarAcesso(hospede.Id, loginHospede.Email, loginHospede.Senha);
@@ -127,7 +131,8 @@ namespace LmjHotelWebApplication.Controllers
             var hospede = await _hospedeService.BuscaPorEmail(newPassword.Email);
             if (hospede == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Email informado para redefinir sua senha não encontra-se cadastrado" });
+                ModelState.AddModelError("", "Email informado não encontra-se na base de dados");
+                return View();
             }
 
             await _hospedeService.RedefinirSenha(hospede, newPassword.Senha);

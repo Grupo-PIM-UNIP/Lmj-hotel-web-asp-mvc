@@ -24,3 +24,15 @@ function calcularValorTotalHospedagem() {
         document.getElementById('valor-total').value = '';
     }
 }
+
+function permitirSomenteNumeros(evt) {
+    var evento = evt || window.event;
+    var chave = evento.keyCode || evento.which;
+    chave = String.fromCharCode(chave);
+
+    var regex = /^[0-9.]+$/;
+    if (!regex.test(chave)) {
+        evento.returnValue = false;
+        if (evento.preventDefault) evento.preventDefault();
+    }
+}

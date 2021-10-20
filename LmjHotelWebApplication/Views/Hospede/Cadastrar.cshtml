@@ -12,6 +12,10 @@
 
     <!-- Inicio do Form Cadastro de Hóspede -->
     <form asp-action="Cadastrar" class="mt-4">
+        <div class=" col-md-6 offset-md-3 mt-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="Nome"></label>
@@ -22,8 +26,17 @@
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
+                <label asp-for="Sobrenome"></label>
+                <input asp-for="Sobrenome" class="form-control " placeholder="Informe seu sobrenome" />
+                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
                 <label asp-for="Cpf"></label>
-                <input asp-for="Cpf" class="form-control" placeholder="Informe o seu CPF" />
+                <input asp-for="Cpf" class="form-control" placeholder="Informe o seu CPF"
+                       onkeypress="return permitirSomenteNumeros();" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
         </div>
@@ -31,7 +44,8 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="Telefone"></label>
-                <input asp-for="Telefone" class="form-control" placeholder="Informe telefone para contato" />
+                <input asp-for="Telefone" type="tel" class="form-control" placeholder="Informe telefone para contato"
+                       onkeypress="return permitirSomenteNumeros();" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
         </div>
@@ -39,7 +53,8 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="CartaoCredito"></label>
-                <input asp-for="CartaoCredito" class="form-control" placeholder="Informe o número do seu cartão de crédito" />
+                <input asp-for="CartaoCredito" class="form-control" placeholder="Informe o número do seu cartão de crédito"
+                        onkeypress="return permitirSomenteNumeros();" />
                 <span asp-validation-for="CartaoCredito" class="text-danger"></span>
             </div>
         </div>

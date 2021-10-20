@@ -36,11 +36,11 @@ namespace LmjHotelWebApplication.Services.Implementacoes
 
             var quartos =
                 from quarto in _context.Quarto
-                where quarto.Estado == estadoQuarto
+                where quarto.EstadoDoQuarto == estadoQuarto
                 select quarto;
 
             return await quartos
-                .OrderBy(quarto => quarto.Numero)
+                .OrderBy(quarto => quarto.Identificacao)
                 .ToListAsync();
         }
 
@@ -54,7 +54,7 @@ namespace LmjHotelWebApplication.Services.Implementacoes
 
             try
             {
-                quarto.Estado = StatusQuarto.Ocupado;
+                quarto.EstadoDoQuarto = StatusQuarto.Ocupado;
                 _context.Quarto.Update(quarto);
                 await _context.SaveChangesAsync();
             }

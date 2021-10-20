@@ -12,6 +12,10 @@
 
     <!-- Inicio do Form de Redefinição de senha -->
     <form asp-action="RedefinirSenha">
+        <div class=" col-md-6 offset-md-3 mt-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+
         <div class="form-group mt-4">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="Email"></label>

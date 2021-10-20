@@ -24,6 +24,14 @@
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
+                <label asp-for="Sobrenome"></label>
+                <input asp-for="Sobrenome" class="form-control" />
+                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
                 <label asp-for="Cpf"></label>
                 <input asp-for="Cpf" class="form-control " readonly />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
@@ -33,7 +41,8 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="Telefone"></label>
-                <input asp-for="Telefone" class="form-control" />
+                <input asp-for="Telefone" class="form-control" 
+                      onkeypress="return permitirSomenteNumeros();" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
         </div>
@@ -41,7 +50,8 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <label asp-for="CartaoCredito"></label>
-                <input asp-for="CartaoCredito" class="form-control" />
+                <input asp-for="CartaoCredito" class="form-control" 
+                       onkeypress="return permitirSomenteNumeros();" />
                 <span asp-validation-for="CartaoCredito" class="text-danger"></span>
             </div>
         </div>

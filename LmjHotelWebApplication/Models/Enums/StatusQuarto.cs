@@ -3,6 +3,7 @@
     public enum StatusQuarto
     {
         Ocupado = 1,
-        Disponivel = 2
+        Disponivel = 2,
     }
 }
+
