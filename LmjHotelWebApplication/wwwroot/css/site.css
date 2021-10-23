@@ -1,10 +1,17 @@
-﻿/* Estilo customizado para o cabeçalho do site */
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+/* Estilo customizado para o cabeçalho do site */
 header {
-    margin-top: 5px;
-    margin-left: 40px;
-    margin-right: 40px;
     background: #C4C4C4;
-    border-radius: 10px;
+    margin-top: 5px;
 }
 
 /* Estilo customizado para o cabeçalho LMJ Hotel na parte superior da tela */
@@ -45,17 +52,6 @@ h4 {
     font-weight: 600;
 }
 
-/* Estilo customizado para os links das telas de login e detalhes */
-.link-custom a, #links-abaixo-login a {
-    text-decoration: none;
-}
-
-/* Muda a cor dos links  ao passar o mouse sobre */
-.link-custom a:hover, #links-abaixo-login a:hover {
-    color: #000080;
-    text-decoration: none;
-}
-
 /* Estilo customizado para o icone reserva na tela se solicitação e confirmação de reserva */
 .icone-reserva {
     width: 180px;
@@ -66,8 +62,8 @@ h4 {
 .user-icone {
     border: 1px solid #000000;
     box-sizing: border-box;
-    border-radius: 45px;
-    width: 70px;
+    border-radius: 40px;
+    width: 60px;
 }
 
 /* Estilo customizado para todos os labels */
@@ -79,17 +75,7 @@ label {
 .btn-config {
     background: #090C59;
     color: #FFFFFF;
-    font-weight: 600;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    font-weight: 800;
 }
 
 /* Estilo customizado para o rodapé */
@@ -127,12 +113,12 @@ footer {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
     #logo {
-        width: 95px;
-        height: 85px;
+        width: 100px;
+        height: 90px;
         border-radius: 20px;
     }
 
     h4 {
-        font-size: 36px;
+        font-size: 40px;
     }
 }

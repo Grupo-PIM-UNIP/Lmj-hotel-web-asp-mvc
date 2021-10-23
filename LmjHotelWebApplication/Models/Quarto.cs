@@ -10,7 +10,9 @@ namespace LmjHotelWebApplication.Models
     {
         [Key]
         public long Id { get; set; }
-        public string Identificacao { get; set; }
+
+        [Display(Name = "Quarto")]
+        public string Numero { get; set; }
         public StatusQuarto EstadoDoQuarto { get; set; }
         public ICollection<Reserva> Reservas { get; } = new List<Reserva>();
     }

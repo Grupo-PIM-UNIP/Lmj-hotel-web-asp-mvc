@@ -2,7 +2,11 @@
 using LmjHotelWebApplication.Models;
 using LmjHotelWebApplication.Services.Contratos;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace LmjHotelWebApplication.Services.Implementacoes
 {
@@ -20,6 +24,20 @@ namespace LmjHotelWebApplication.Services.Implementacoes
         /* As Tasks estão sendo usadas para realizarmos operações assíncronas de acesso a dados,
          isso melhora a perfomance da aplicação, para isso devemos colocar a palavra async antes
          da palavra Task e acrescentar a palavra await antes da operação a ser realizada com o banco */
+
+        public async Task<ICollection<Reserva>> ListarMinhasReservas(long hospedeId)
+        {
+            var minhasReservas =
+                from reserva in _context.Reserva
+                where reserva.HospedeId == hospedeId
+                select reserva;
+
+            return await minhasReservas
+               .Include(obj => obj.Quarto)
+               .Include(obj => obj.Pagamento)
+               .OrderByDescending(reserva => reserva.DataInicio)
+               .ToListAsync();
+        }
 
         public async Task SalvarReserva(Reserva reserva)
         {

@@ -1,4 +1,18 @@
-﻿function calcularDiasDeHospedagem() {
+﻿function calcularTotalHospedagem() {
+
+    var diaria = parseFloat(document.getElementById('diaria-hotel').value);
+    var diasDeHospedagem = parseFloat(calcularDiasDeHospedagem());
+    var valorTotal = parseFloat(diaria * diasDeHospedagem).toFixed(2);
+
+    if (valorTotal > 0) {
+        document.getElementById('valor-total').value = valorTotal;
+    }
+    else {
+        document.getElementById('valor-total').value = '';
+    }
+}
+
+function calcularDiasDeHospedagem() {
 
     var dataInicio = new Date(document.getElementById('data-inicio').value);
     var dataTermino = new Date(document.getElementById('data-termino').value);
@@ -10,19 +24,6 @@
     var milissegundosPorDia = (1 * 24 * 60 * 60 * 1000);
 
     return Math.ceil(milissegundosEntreAsDatas / milissegundosPorDia);
-}
-
-function calcularValorTotalHospedagem() {
-
-    var valor = 150.00;
-    var total = parseFloat((valor * calcularDiasDeHospedagem()).toFixed(2));
-
-    if (total > 0) {
-        document.getElementById('valor-total').value = total;
-    }
-    else {
-        document.getElementById('valor-total').value = '';
-    }
 }
 
 function permitirSomenteNumeros(evt) {

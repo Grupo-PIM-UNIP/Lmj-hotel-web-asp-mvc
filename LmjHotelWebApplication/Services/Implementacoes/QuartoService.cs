@@ -40,7 +40,7 @@ namespace LmjHotelWebApplication.Services.Implementacoes
                 select quarto;
 
             return await quartos
-                .OrderBy(quarto => quarto.Identificacao)
+                .OrderBy(quarto => quarto.Numero)
                 .ToListAsync();
         }
 

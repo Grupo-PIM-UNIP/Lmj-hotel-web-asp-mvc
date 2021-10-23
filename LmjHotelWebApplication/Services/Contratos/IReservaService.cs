@@ -1,5 +1,6 @@
 ﻿using LmjHotelWebApplication.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LmjHotelWebApplication.Services.Contratos
@@ -9,5 +10,6 @@ namespace LmjHotelWebApplication.Services.Contratos
         Task SalvarReserva(Reserva reserva);
         Task SalvarPagamento(Pagamento pagamento);
         bool ValidarReserva(DateTime inicio, DateTime termino);
+        Task<ICollection<Reserva>> ListarMinhasReservas(long hospedeId);
     }
 }

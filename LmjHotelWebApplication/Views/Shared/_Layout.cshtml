@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Lmj Hotel </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
 </head>
 
 <!-- Todo HTML, CSS e Bootstrap aqui configurados servem de layouts para
@@ -18,8 +18,8 @@
         <!-- Inicio da barra de navegação -->
         <nav class="navbar navbar-expand-md navbar-light">
             <!-- Inicio da área container do cabecalho -->
-            <div class="container">
-                <img src="~/images/logo-hotel.jpg" class="nav-brand" id="logo">
+            <div class="container-fluid">
+                <img src="~/images/logo-hotel.jpg" class="nav-brand ml-3" id="logo">
                 <h4 class="ml-3">LMJ Hotel</h4>
 
                 <!-- Menu Hamburguer (Aparece somente quando o tamanho da tela á reduzido) -->
@@ -28,9 +28,9 @@
                 </button>
 
                 <!-- Inicio da configuração dos itens de naveção -->
-                <div class="collapse navbar-collapse mr-4" id="navegacao">
+                <div class="collapse navbar-collapse mr-3" id="navegacao">
                     <div class="nav flex-column ml-auto mt-3">
-                        <a class="link-tela-reserva" asp-controller="Reserva" asp-action="Index">Faça sua reserva</a>
+                        <a class="link-tela-reserva" asp-controller="Reserva" asp-action="Solicitar">Faça sua reserva</a>
                         <ul class="navbar-nav mt-2">
                             <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                             @if (User.Identity.IsAuthenticated)
@@ -51,7 +51,6 @@
             </div><!-- Final da área container do cabecalho -->
         </nav><!--Final da barra de navegação-->
     </header><!--Final do cabeçalho-->
-
     <!-- Inicio da área de container do conteúdo principal de cada View -->
     <div class="container">
         <main role="main" class="pb-3">
@@ -62,7 +61,7 @@
     <!-- Inicio do rodapé do site -->
     <footer class="border-top footer text-muted">
         <div class="container text-center">
-            &copy;<strong>LMJ Hotel - Prestando serviços de Hotelaria desde 2002</strong> - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy;<strong>LMJ Hotel - Prestando serviços de Hotelaria desde 2002</strong>
         </div>
     </footer><!-- Final do rodapé do site -->
 

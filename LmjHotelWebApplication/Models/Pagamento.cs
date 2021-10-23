@@ -11,7 +11,9 @@ namespace LmjHotelWebApplication.Models
         public long Id { get; set; }
         public DateTime Instante { get; set; }
 
-        [Required(ErrorMessage = "O cálculo do valor total é obrigatório")]
+        [Required(ErrorMessage = "O Informe as datas de início e fim corretamente para o sistema calcular o valor total")]
+        [Display(Name = "Valor R$")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Valor { get; set; }
 
         [Required(ErrorMessage = "Preenchimento obrigatório")]

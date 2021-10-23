@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -30,10 +31,10 @@ namespace LmjHotelWebApplication.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction(nameof(Cadastrar));
+            return RedirectToAction(nameof(Solicitar));
         }
 
-        public async Task<IActionResult> Cadastrar()
+        public async Task<IActionResult> Solicitar()
         {
             long idHospede = 0;
             foreach (var claim in User.Claims)
@@ -60,7 +61,7 @@ namespace LmjHotelWebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Cadastrar(long? id, ReservaFormViewModel obj)
+        public async Task<IActionResult> Solicitar(long? id, ReservaFormViewModel obj)
         {
             var validarReserva = _reservaService.ValidarReserva(obj.Reserva.DataInicio, obj.Reserva.DataFim);
 
@@ -91,7 +92,7 @@ namespace LmjHotelWebApplication.Controllers
                 {
                     DataInicio = obj.Reserva.DataInicio,
                     DataFim = obj.Reserva.DataFim,
-                    PrecoPorDiaria = obj.Reserva.PrecoPorDiaria,
+                    Diaria = obj.Reserva.Diaria,
                     HospedeId = id.Value,
                     QuartoId = obj.Reserva.QuartoId,
                 };
@@ -100,7 +101,7 @@ namespace LmjHotelWebApplication.Controllers
                 var pagamento = new Pagamento()
                 {
                     Instante = DateTime.Now,
-                    Valor = (obj.Pagamento.Valor == valorTotal) ? obj.Pagamento.Valor : reserva.CalcularValorTotalDaHospedagem(),
+                    Valor = (obj.Pagamento.Valor == valorTotal) ? obj.Pagamento.Valor : valorTotal,
                     QtdParcelas = obj.Pagamento.QtdParcelas,
                     Reserva = reserva
                 };
@@ -115,6 +116,30 @@ namespace LmjHotelWebApplication.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+        }
+
+        public async Task<IActionResult> Consultar(long? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new
+                {
+                    message = "Erro de identificação, Tente fazer login novamente," +
+                   "caso o erro persista, favor entrar em contato com a administração do hotel"
+                });
+            }
+
+            var minhasReservas = await _reservaService.ListarMinhasReservas(id.Value);
+            if (!minhasReservas.Any())
+            {
+                return RedirectToAction(nameof(Information));
+            }
+            return View(minhasReservas);
+        }
+
+        public IActionResult Information()
+        {
+            return View();
         }
 
         public IActionResult Success(string message)
