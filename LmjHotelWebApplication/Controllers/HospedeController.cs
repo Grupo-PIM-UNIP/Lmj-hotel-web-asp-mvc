@@ -41,8 +41,16 @@ namespace LmjHotelWebApplication.Controllers
                 return View();
             }
 
-            await _hospedeService.Cadastrar(hospede);
-            return RedirectToAction(nameof(Success), new { message = "Cadastro realizado com sucesso" });
+            try
+            {
+                await _hospedeService.Cadastrar(hospede);
+                return RedirectToAction(nameof(Success), new { message = "Cadastro realizado com sucesso" });
+            }
+
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         public async Task<IActionResult> Editar(long? id)
@@ -157,7 +165,7 @@ namespace LmjHotelWebApplication.Controllers
             }
             return RedirectToAction(nameof(Error), new
             {
-                message = "Falha ao carregar os seus dados, tente novamente mais tarde," +
+                message = "Falha ao carregar os seus dados, clique em Logout e faça Login novamente," +
                 " caso o erro persista, favor entrar em contato com a administração da LMJ Hotel"
             });
         }

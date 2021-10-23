@@ -6,7 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using LmjHotelWebApplication.Services.Exceptions;
 
 namespace LmjHotelWebApplication.Services.Implementacoes
 {
@@ -41,14 +41,28 @@ namespace LmjHotelWebApplication.Services.Implementacoes
 
         public async Task SalvarReserva(Reserva reserva)
         {
-            _context.Add(reserva);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Add(reserva);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
 
         public async Task SalvarPagamento(Pagamento pagamento)
         {
-            _context.Add(pagamento);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Add(pagamento);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
 
         public bool ValidarReserva(DateTime inicio, DateTime termino)

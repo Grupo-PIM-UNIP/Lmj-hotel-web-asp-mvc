@@ -48,7 +48,7 @@ namespace LmjHotelWebApplication.Controllers
                     {
                         return RedirectToAction(nameof(Error), new
                         {
-                            message = "Erro de identificação, Tente fazer login novamente," +
+                            message = "Erro de identificação, clique em Logout e faça Login novamente," +
                             "caso o erro persista, favor entrar em contato com a administração do hotel"
                         });
                     }
@@ -75,7 +75,7 @@ namespace LmjHotelWebApplication.Controllers
                 {
                     return RedirectToAction(nameof(Error), new
                     {
-                        message = "Erro de identificação, Tente fazer login novamente," +
+                        message = "Erro de identificação, clique em Logout e faça Login novamente," +
                          "caso o erro persista, favor entrar em contato com a administração do hotel"
                     });
                 }
@@ -124,7 +124,7 @@ namespace LmjHotelWebApplication.Controllers
             {
                 return RedirectToAction(nameof(Error), new
                 {
-                    message = "Erro de identificação, Tente fazer login novamente," +
+                    message = "Erro de identificação, clique em Logout faça Login novamente," +
                    "caso o erro persista, favor entrar em contato com a administração do hotel"
                 });
             }

@@ -39,8 +39,15 @@ namespace LmjHotelWebApplication.Services.Implementacoes
             string hashSenha = EncriptarSenhaSHA256(hospede.Senha);
             hospede.Senha = hashSenha;
 
-            _context.Add(hospede);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Add(hospede);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
 
         public async Task AtualizarCadastro(Hospede hospede)
