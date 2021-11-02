@@ -6,81 +6,83 @@
 
 <div>
     <div class="d-flex justify-content-center mt-4">
-        <img src="~/images/person.jpg" class="user-icone" />
+        <img src="~/images/person.jpg" class="user-icone">
         <h4 class="ml-4 mt-3">@ViewData["title"]</h4>
     </div>
 
     <!-- Inicio do Form Cadastro de Hóspede -->
-    <form asp-action="Cadastrar" class="mt-4">
-        <div class=" col-md-6 offset-md-3 mt-4">
-            <div asp-validation-summary="All" class="text-danger"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Nome"></label>
-                <input asp-for="Nome" class="form-control " placeholder="Informe seu nome" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+    <div>
+        <form asp-action="Cadastrar" class="mt-4">
+            <div class=" col-md-6 offset-md-3 mt-4">
+                <div asp-validation-summary="All" class="text-danger"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Sobrenome"></label>
-                <input asp-for="Sobrenome" class="form-control " placeholder="Informe seu sobrenome" />
-                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Nome"></label>
+                    <input asp-for="Nome" class="form-control " placeholder="Informe seu nome">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Cpf"></label>
-                <input asp-for="Cpf" class="form-control" placeholder="Informe o seu CPF"
-                       onkeypress="return permitirSomenteNumeros();" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Sobrenome"></label>
+                    <input asp-for="Sobrenome" class="form-control " placeholder="Informe seu sobrenome">
+                    <span asp-validation-for="Sobrenome" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Telefone"></label>
-                <input asp-for="Telefone" type="tel" class="form-control" placeholder="Informe telefone para contato"
-                       onkeypress="return permitirSomenteNumeros();" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Cpf"></label>
+                    <input asp-for="Cpf" class="form-control" placeholder="Informe o seu CPF"
+                           onkeypress="return permitirSomenteNumeros();">
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="CartaoCredito"></label>
-                <input asp-for="CartaoCredito" class="form-control" placeholder="Informe o número do seu cartão de crédito"
-                        onkeypress="return permitirSomenteNumeros();" />
-                <span asp-validation-for="CartaoCredito" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Telefone"></label>
+                    <input asp-for="Telefone" type="tel" class="form-control" placeholder="Informe telefone para contato"
+                           onkeypress="return permitirSomenteNumeros();">
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" placeholder="Informe o seu Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="CartaoCredito"></label>
+                    <input asp-for="CartaoCredito" class="form-control" placeholder="Informe o número do seu cartão de crédito"
+                           onkeypress="return permitirSomenteNumeros();">
+                    <span asp-validation-for="CartaoCredito" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <label asp-for="Senha"></label>
-                <input asp-for="Senha" class="form-control" placeholder="Informe uma senha para acesso" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Informe o seu Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6 offset-md-3">
-                <input type="submit" value="Cadastrar" class="btn btn-config" />
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <label asp-for="Senha"></label>
+                    <input asp-for="Senha" class="form-control" placeholder="Informe uma senha para acesso">
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-    </form><!--Final do Form Cadastro de Hóspede -->
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Cadastrar" class="btn btn-config">
+                </div>
+            </div>
+        </form><!--Final do Form Cadastro de Hóspede -->
+    </div>
 </div>
 
 @section Scripts {

@@ -5,17 +5,19 @@
 }
 
 <div class="ml-5">
-    <div class="d-flex justify-content-start mt-4">
-        <img src="~/images/person.jpg" class="user-icone" />
-        <h5 class="ml-3 mt-3">@ViewData["title"]</h5>
-        <a asp-controller="Reserva" asp-action="Consultar" asp-route-id="@Model.Id" class="btn btn-config ml-5 pt-3 h-25">
-            <h6 class="text-center">Minhas Reservas</h6>
+    <div class="d-md-flex justify-content-start mt-4">
+        <div class="custom-detalhes">
+            <img src="~/images/person.jpg" class="user-icone">
+            <h5 class="ml-3 mt-3">@ViewData["title"]</h5>
+        </div>
+        <a asp-controller="Reserva" asp-action="Consultar" asp-route-id="@Model.Id" class="btn btn-config-2">
+            Minhas Reservas
         </a>
     </div>
 
     <!-- Inicio da área de detalhes onde, o hóspede verifica seus dados cadastrados -->
     <div class="mt-2">
-        <hr />
+        <hr>
         <div class="">
             <dl>
                 <dt>
@@ -60,10 +62,6 @@
     <!-- Links opcionais abaixo da área de detalhes  -->
     <div class="col-md-6 mt-4">
         <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-config">Editar dados</a>
-        <a asp-controller="Home" asp-action="Index" class="ml-3 pt-1">Voltar a página principal</a>
+        <a asp-controller="Home" asp-action="Index" class="main-page">Voltar a página principal</a>
     </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

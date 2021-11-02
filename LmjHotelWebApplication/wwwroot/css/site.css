@@ -1,29 +1,43 @@
-﻿html {
+﻿/* Estilo padrão para todo HTML */
+html {
     position: relative;
     min-height: 100%;
 }
 
+/* Margin bottom by footer height */
 body {
-    /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
 
-/* Estilo customizado para o cabeçalho do site */
+/* Estilo padrão de todas as páginas do site */
 header {
     background: #C4C4C4;
+    border-radius: 10px;
     margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-/* Estilo customizado para o cabeçalho LMJ Hotel na parte superior da tela */
-h4 {
-    color: #383838;
+/* Estilo padrão para a div que contém a imagem logo e o título LMJ Hotel*/
+.tema-hotel {
+    margin-left: 30px;
 }
 
-/* Estilo customizado para a imagens logotipo do hotel */
-#logo {
+/* Estilo padrão para a imagen logotipo do hotel */
+.tema-hotel #logo {
     width: 120px;
     height: 110px;
     border-radius: 20px;
+}
+
+/* Estilo padrão para o cabeçalho LMJ Hotel na parte superior da tela */
+.tema-hotel h4 {
+    color: #383838;
+}
+
+/* Deixa a cor de efeito hover a mesma do background do header ao passar o mouse em cima da imagem logo */
+.tema-hotel a:hover {
+    color: #C4C4C4;
 }
 
 /* Mudando a cor dos links de naveção na parte superior da tela */
@@ -31,17 +45,13 @@ h4 {
     color: #383838;
 }
 
-/* Muda a cor dos itens de naveção principal ao passar o mouse sobre */
-#navegacao ul a:hover {
+/* Muda a cor de todos os links ao passar o mouse em cima e remove o underline */
+#navegacao ul a:hover, a:hover {
     color: #000080;
-}
-
-/* Removendo o underline ao passar o mouse em cima do Faça sua reserva */
-#navegacao a:hover {
     text-decoration: none;
 }
 
-/* Estilo customizado para o link Faça sua reserva na parte superior da tela */
+/* Estilo padrão para o link Faça sua reserva na parte superior da tela */
 .link-tela-reserva {
     text-decoration: none;
     text-align: center;
@@ -52,13 +62,13 @@ h4 {
     font-weight: 600;
 }
 
-/* Estilo customizado para o icone reserva na tela se solicitação e confirmação de reserva */
+/* Estilo padrão para o icone reserva na tela se solicitação e confirmação de reserva */
 .icone-reserva {
     width: 180px;
     height: 95px;
 }
 
-/* Estilo customizado para o ícone de usuário nas tela de hóspede e de cadastro */
+/* Estilo padrão para o ícone de usuário nas tela de hóspede e de cadastro */
 .user-icone {
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -72,10 +82,103 @@ label {
 }
 
 /* Estilo customizado para todos os botões */
-.btn-config {
+.btn-config, .btn-config-2 {
     background: #090C59;
     color: #FFFFFF;
     font-weight: 800;
+}
+
+/* Estilo customizado para todos os botões */
+.btn-config-2 {
+    border-radius: 10px;
+    margin-top: 9px;
+    margin-left: 50px;
+    height: 39px;
+}
+
+/* Muda a cor de todos os botões ao passar o mouse sobre */
+.btn-config:hover, .btn-config-2:hover {
+    color: #9370DB;
+}
+
+/* Configuração de margin para o link Voltar a Página Principal na tela detalhes  */
+.main-page {
+    margin-left: 30px;
+}
+
+/* Configuração do título Dados Cadastrados da tela Detalhes */
+.custom-detalhes h5 {
+    display: inline;
+}
+
+/* Estilo padrão para o agrupamento de conteúdos das páginas Serviços e Sobre */
+.jumbotron {
+    background-color: #FFFFFF;
+    margin-top: 0px;
+}
+
+/* Estilo padrão o conteudo da página Sobre */
+.media-body {
+    background-color: #C4C4C4;
+    border-radius: 10px;
+    max-width: 500px;
+    margin-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+/* Configurando tamanho padrão para as imagens da página sobre */
+.imgs-sobre-config {
+    width: 315px;
+    height: 210px;
+}
+
+/* Regulando tamanho do parágrafo da página Sobre */
+.media-body p {
+    font-size: 18px;
+}
+
+/* Formatação para as áreas textuais da página Sobre */
+.text-sobre-1, .text-sobre-2 {
+    background-color: #C4C4C4;
+    border-radius: 10px;
+    max-width: 530px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+}
+
+/* Estilo padrão para primeira área textual da página Sobre */
+.text-sobre-1 {
+    margin-left: 130px;
+}
+
+/* Estilo padrão para segunda área textual da página Sobre */
+.text-sobre-2 {
+    margin-left: 25px;
+    margin-right: 40px;
+}
+
+/* Regulando o tamanho da fonte dos 2 parágrafos da página Sobre */
+.text-sobre-1 p, .text-sobre-2 p {
+    font-size: 17px;
+}
+
+/* Configurando tamanho padrão para as imagens da página serviços */
+.imgs-config {
+    width: 340px;
+    height: 240px;
+}
+
+/* Configuração padrão para os títulos das imagens da página Serviços */
+.tema-servicos h5 {
+    background-color: #C4C4C4;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 155px;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Estilo customizado para o rodapé */
@@ -84,9 +187,14 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    height: 60px;
     white-space: nowrap;
     line-height: 60px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+footer p {
+    font-weight: bold;
 }
 
 .border-top {
@@ -99,26 +207,161 @@ footer {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
-    #logo {
-        width: 55px;
-        height: 50px;
+    
+    .tema-hotel {
+        margin-left: 0px;
+    }
+
+    .tema-hotel #logo {
+        width: 80px;
+        height: 70px;
         border-radius: 15px;
     }
 
-    h4 {
-        font-size: 16px;
+    .tema-hotel h4 {
+        font-size: 19px;
+    }
+
+    .btn-config-2 {
+        border-radius: 10px;
+        margin-top: 22px;
+        margin-left: 10px;
+    }
+
+    .custom-detalhes h5 {
+        display: inline;
+    }
+
+    .main-page {
+        display: block;
+        margin-top: 14px;
+        margin-left: 4px;
+    }
+
+    .imgs-config, .imgs-sobre-config,
+    .text-sobre-1 p, .text-sobre-2 p,
+    .text-sobre-1, .text-sobre-2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imgs-config {
+        width: 240px;
+        height: 145px;
+    }
+
+    .imgs-sobre-config {
+        width: 249px;
+        height: 180px;
+    }
+
+    .tema-servicos h5 {
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        display: block;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 155px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tema-servicos .espacamento {
+        margin-top: 45px;
+    }
+
+    .text-sobre-1 p, .text-sobre-2 p {
+        font-size: 17px;
+    }
+
+    .text-sobre-1, .text-sobre-2 {
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        margin-top: 30px;
+        max-width: 280px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left: 20px;
     }
 }
 
-/* Small devices (landscape phones, 576px and up) */
+/* Small devices (landscape phones, 576px and up) */ 
 @media (min-width: 576px) and (max-width: 767.98px) {
-    #logo {
-        width: 100px;
-        height: 90px;
+
+    .tema-hotel {
+        margin-left: 0px;
+    }
+
+    .tema-hotel #logo {
+        width: 110px;
+        height: 100px;
         border-radius: 20px;
     }
 
-    h4 {
-        font-size: 40px;
+    .tema-hotel h4 {
+        font-size: 30px;
+    }
+
+    .btn-config-2 {
+        border-radius: 10px;
+        margin-top: 22px;
+        margin-left: 10px;
+    }
+
+    .main-page {
+        display: block;
+        margin-top: 14px;
+        margin-left: 4px;
+    }
+
+    .imgs-config, .imgs-sobre-config,
+    .text-sobre-1 p, .text-sobre-2 p,
+    .text-sobre-1, .text-sobre-2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imgs-config {
+        width: 350px;
+        height: 270px;
+    }
+
+    .imgs-sobre-config {
+        width: 450px;
+        height: 300px;
+    }
+
+    .tema-servicos h5 {
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        display: block;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 155px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tema-servicos .espacamento {
+        margin-top: 45px;
+    }
+
+    .text-sobre-1 p, .text-sobre-2 p {
+        font-size: 17px;
+    }
+
+    .text-sobre-1, .text-sobre-2 {
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        max-width: 530px;
+        margin-top: 30px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left: 20px;
     }
 }
+ 

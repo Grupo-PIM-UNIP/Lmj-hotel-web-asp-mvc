@@ -19,8 +19,12 @@
         <nav class="navbar navbar-expand-md navbar-light">
             <!-- Inicio da área container do cabecalho -->
             <div class="container-fluid">
-                <img src="~/images/logo-hotel.jpg" class="nav-brand ml-3" id="logo">
-                <h4 class="ml-3">LMJ Hotel</h4>
+                <div class="nav-brand tema-hotel">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo-hotel.jpg" id="logo">
+                    </a>
+                    <h4 class="d-inline ml-2">LMJ Hotel</h4>
+                </div>
 
                 <!-- Menu Hamburguer (Aparece somente quando o tamanho da tela á reduzido) -->
                 <button class="navbar-toggler text-right" data-toggle="collapse" data-target="#navegacao">
@@ -28,7 +32,7 @@
                 </button>
 
                 <!-- Inicio da configuração dos itens de naveção -->
-                <div class="collapse navbar-collapse mr-3" id="navegacao">
+                <div class="collapse navbar-collapse mr-5" id="navegacao">
                     <div class="nav flex-column ml-auto mt-3">
                         <a class="link-tela-reserva" asp-controller="Reserva" asp-action="Solicitar">Faça sua reserva</a>
                         <ul class="navbar-nav mt-2">
@@ -43,8 +47,8 @@
                             {
                                 <li><a class="nav-link" asp-controller="Hospede" asp-action="Login">Hóspede</a></li>
                             }
-                            <li><a class="nav-link" asp-controller="" asp-action="">Serviços</a></li>
-                            <li><a class="nav-link" asp-controller="" asp-action="">Sobre</a></li>
+                            <li><a class="nav-link" asp-controller="Home" asp-action="Servicos">Serviços</a></li>
+                            <li><a class="nav-link" asp-controller="Home" asp-action="Sobre">Sobre</a></li>
                         </ul>
                     </div>
                 </div><!-- Final da configuração dos itens de naveção -->
@@ -60,11 +64,8 @@
 
     <!-- Inicio do rodapé do site -->
     <footer class="border-top footer text-muted">
-        <div class="container text-center">
-            &copy;<strong>LMJ Hotel - Prestando serviços de Hotelaria desde 2002</strong>
-        </div>
+        <p class="text-center">&copy;LMJ Hotel - desde 2002</p>
     </footer><!-- Final do rodapé do site -->
-
     <!-- Scripts padrão gerados pelo ASP NET CORE -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
