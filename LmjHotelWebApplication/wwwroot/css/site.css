@@ -111,6 +111,54 @@ label {
     display: inline;
 }
 
+/* Configurando largura e altura das imagens em carousel da página principal */
+.carousel img {
+    margin-top: 30px;
+    width: 850px;
+    height: 460px;
+}
+
+/* Configurando a descrição das imagens carousel da página principal */
+.carousel p {
+    background-color: #696969;
+    border-radius: 10px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+/* Configurando a descrição da imagens carousel da página principal */
+.carousel a {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+/* Configurando efeito hover para o título Descubra mais contidos imagens do carousel  */
+.carousel a:hover {
+    color: #6495ED;
+}
+
+/* Configurando padrão para o conteúdo textual da página principal */
+#conteudo-home {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* Configurando padrão para os títulos dos conteúdos textuais da página principal */
+#conteudo-home h5, #conteudo-home h6 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+/* Configurando padrão para os parágrafos dos conteúdos textuais da página principal */
+#conteudo-home p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+}
+
 /* Estilo padrão para o agrupamento de conteúdos das páginas Serviços e Sobre */
 .jumbotron {
     background-color: #FFFFFF;
@@ -222,6 +270,12 @@ footer p {
         font-size: 19px;
     }
 
+    .carousel img {
+        margin-top: 30px;
+        max-width: 380px;
+        max-height: 200px;
+    }
+
     .btn-config-2 {
         border-radius: 10px;
         margin-top: 22px;
@@ -302,6 +356,12 @@ footer p {
 
     .tema-hotel h4 {
         font-size: 30px;
+    }
+
+    .carousel img {
+        margin-top: 30px;
+        width: 550px;
+        height: 350px;
     }
 
     .btn-config-2 {
